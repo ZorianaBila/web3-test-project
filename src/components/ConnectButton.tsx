@@ -1,12 +1,13 @@
 import { useState, useEffect, useCallback } from "react";
 import Web3 from "web3";
 import { useWeb3React } from "@web3-react/core";
-import { Button, Box, Text, Input, Switch } from "@chakra-ui/react";
+import { Box, Text, Input, Switch } from "@chakra-ui/react";
 import { useDisclosure, useToast } from "@chakra-ui/react";
 import { injected } from "../config/wallets";
 import abi from "./abi.json";
 import { AbiItem } from "web3-utils";
 import ModalConfirm from "./ModalConfirm";
+import ButtonStyled from "./ButtonStyled";
 
 declare global {
   interface Window {
@@ -198,46 +199,14 @@ export default function ConnectButton() {
               value={sendAmount}
               onChange={handleChangeAmount}
             />
-            <Button
-              onClick={handleOpenModal}
-              ml="2"
-              bg="#158DE8"
-              color="white"
-              fontWeight="medium"
-              borderRadius="xl"
-              border="1px solid transparent"
-              _hover={{
-                borderColor: "blue.700",
-                color: "gray.800",
-              }}
-              _active={{
-                backgroundColor: "blue.800",
-                borderColor: "blue.700",
-              }}
-            >
-              Send
-            </Button>
+            <ButtonStyled onClick={handleOpenModal} text="Send" ml="2" />
           </Box>
           <Box display="flex" justifyContent="center" alignItems="center">
-            <Button
+            <ButtonStyled
               onClick={handleConnectWallet}
-              bg="#158DE8"
-              color="white"
-              fontWeight="medium"
-              borderRadius="xl"
-              border="1px solid transparent"
+              text="Disconnect Wallet"
               width="300px"
-              _hover={{
-                borderColor: "blue.700",
-                color: "gray.800",
-              }}
-              _active={{
-                backgroundColor: "blue.800",
-                borderColor: "blue.700",
-              }}
-            >
-              Disconnect Wallet
-            </Button>
+            />
           </Box>
           <ModalConfirm
             isOpen={isOpen}
@@ -255,25 +224,11 @@ export default function ConnectButton() {
         </Box>
       ) : (
         <Box bg="white" p="4" borderRadius="xl">
-          <Button
+          <ButtonStyled
             onClick={handleConnectWallet}
-            bg="#158DE8"
-            color="white"
-            fontWeight="medium"
-            borderRadius="xl"
-            border="1px solid transparent"
+            text="Connect Wallet"
             width="300px"
-            _hover={{
-              borderColor: "blue.700",
-              color: "gray.800",
-            }}
-            _active={{
-              backgroundColor: "blue.800",
-              borderColor: "blue.700",
-            }}
-          >
-            Connect Wallet
-          </Button>
+          />
         </Box>
       )}
     </>
